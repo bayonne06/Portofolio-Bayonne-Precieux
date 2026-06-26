@@ -1,26 +1,46 @@
+/* ============================================================
+   VARIABLES GLOBALES (Custom Properties)
+   Palette de couleurs, dégradé de fond, et familles de polices
+   ============================================================ */
 :root {
-  --titre: #ffffff;
-  --texte: #b3b3cc;
-  --effet: #f8f9fa;
-  --bouton: #00d4ff;
-  --fdcarte: #110e3d;
-  --bgmain: #020024;
-  --bg: linear-gradient(
+  --titre: #ffffff;                       /* Couleur des titres */
+  --texte: #b3b3cc;                       /* Couleur du texte courant */
+  --effet: #f8f9fa;                       /* Couleur au survol (hover) */
+  --bouton: #00d4ff;                      /* Couleur des boutons et accents */
+  --fdcarte: #110e3d;                     /* Fond des cartes / articles */
+  --bgmain: #020024;                      /* Fond principal sombre */
+  --bg: linear-gradient(                  /* Dégradé de fond général */
     319deg,
     rgb(4, 91, 109) 0%,
     rgba(9, 9, 121, 1) 63%,
     rgba(2, 0, 36, 1) 100%
   );
-  --element: #38ef7d;
-  --surface: #101438;
-  --border: #ffffff;
+  --element: #38ef7d;                     /* Couleur des éléments mis en valeur (vert) */
+  --surface: #101438;                     /* Fond des surfaces secondaires (nav, aside…) */
+  --border: #ffffff;                      /* Couleur des bordures */
+
+  /* Familles de polices */
+  --police_principale:  "Oswald", sans-serif;        /* Police des titres */
+  --police_secondaire: "Croissant One", serif;       /* Police du texte courant */
+  --police_code: "Dancing Script", cursive;          /* Police des champs de formulaire / notes */
+  --police_lien: "Concert One", cursive;             /* Police des liens et boutons */
 }
 
+
+/* ============================================================
+   RESET DE BASE
+   Supprime marges/paddings par défaut et applique border-box
+   ============================================================ */
 * {
   margin: 0 auto;
   padding: 0 auto;
   box-sizing: border-box;
 }
+
+/* ============================================================
+   STRUCTURE GÉNÉRALE — html & body
+   Dégradé de fond sur toute la hauteur/largeur de la page
+   ============================================================ */
 html,
 body {
   padding: 0;
@@ -30,6 +50,12 @@ body {
   background: var(--bg);
 }
 
+
+/* ============================================================
+   EN-TÊTE (HEADER)
+   ============================================================ */
+
+/* Conteneur principal de l'en-tête avec image de fond */
 .head {
   background: #020024;
   background: var(--bg);
@@ -38,8 +64,10 @@ body {
   left: 0;
   z-index: 1000;
   border-bottom: 5px solid var(--border);
-  background-image: url("image_backg.png");
+  background-image: url("image_backg.png");   /* Image de fond décorative */
 }
+
+/* Photo de profil dans l'en-tête, alignée à gauche */
 header img {
   float: left;
   margin-left: 5%;
@@ -47,63 +75,128 @@ header img {
   border-radius: 5%;
   background: var(--bgmain);
   border: 1px solid var(--border);
+  box-shadow: 1px 1px 5px var(--border);
 }
+
+/* Titre principal h1 dans l'en-tête */
 h1 {
   margin: 2% 50% 0 5%;
   color: aliceblue;
+  font-family: var(--police_principale);
 }
+
+
+/* ============================================================
+   TYPOGRAPHIE — Association des polices par type d'élément
+   ============================================================ */
+
+/* Paragraphes : police secondaire (serif) */
+p {
+  font-family: var(--police_secondaire);
+}
+
+/* Liens et boutons : police dédiée aux liens */
+a, button {
+  font-family: var(--police_lien);
+}
+
+/* Champs de saisie et sélecteurs : police "code" / cursive */
+input, textarea, select {
+  font-family: var(--police_code);
+}
+
+/* Classe utilitaire pour les notes ou annotations */
+.note {
+  font-family: var(--police_code);
+}
+
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+/* Items de navigation en ligne (horizontaux), sans puces */
 nav ul li {
   list-style: none;
   display: inline-block;
 }
+
+/* Liens dans la navigation */
 ul li a {
   color: blue;
   margin-right: 50px;
   text-align: center;
   font-size: 22px;
 }
+
+/* Supprime le soulignement de tous les liens */
 a {
   text-decoration: none;
 }
+
+/* Description courte sous le titre dans l'en-tête */
 header > p {
   margin: 0.5% 50% 3% 5%;
   color: var(--texte);
 }
+
+/* Conteneur <nav> enfant direct du <header> */
 header > nav {
   justify-self: center;
   margin: 1.5% 0 2% 0;
   padding: 2%;
 }
 
-
-
+/* Barre de navigation générale (style "carte flottante") */
 nav {
   background: var(--surface);
   padding: 1% 0;
   border-radius: 10px;
   border: 1px solid var(--border);
   margin: 0 5%;
+  box-shadow: 1px 11px 1px rgba(0, 0, 0, 0.5);  /* Ombre portée */
 }
 
+/* Effet de survol sur les liens de navigation */
 li a:hover {
   color: var(--effet);
 }
 
+
+/* ============================================================
+   SECTION PROJETS
+   ============================================================ */
+
+/* Espacement supérieur de la section projets */
 #projets {
   margin-top: 5%;
 }
 
+/* Carte d'article (projet) */
 section article {
   background: var(--fdcarte);
   padding: 1.75rem;
   border-radius: 8px;
   border: 1px solid var(--border);
   margin-bottom: 5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   width: 70%;
-  
 }
 
+/* Image dans une carte d'article */
+section article img {
+  margin-bottom: 1rem;
+  margin-left: 5%;
+  height: auto;
+  border-radius: 8px;
+}
+
+
+/* ============================================================
+   TITRES DU CONTENU PRINCIPAL (main)
+   ============================================================ */
+
+/* Titre h2 : aligné à droite avec séparateur */
 main h2 {
   color: var(--titre);
   text-align: right;
@@ -111,6 +204,8 @@ main h2 {
   margin-bottom: 2%;
   border-bottom: 1px solid var(--border);
 }
+
+/* Titre h3 : aligné à gauche */
 main h3 {
   color: var(--titre);
   text-align: left;
@@ -118,30 +213,44 @@ main h3 {
   margin-bottom: 2%;
 }
 
+/* Paragraphes du contenu principal */
 main p {
   color: var(--texte);
   text-align: justify;
   margin: 0 5% 2% 5%;
 }
 
+
+/* ============================================================
+   EXTRAIT DE CODE INLINE
+   ============================================================ */
 code {
   background: var(--surface);
-  color: var(--element);
+  color: var(--element);     /* Vert pour faire ressortir le code */
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
   font-family: monospace;
   font-size: 0.95rem;
 }
+
+
+/* ============================================================
+   LIENS À L'INTÉRIEUR DES ARTICLES
+   ============================================================ */
+
+/* Lien affiché en bloc centré (style bouton) */
 article a {
-    display: block;
+  display: block;
   color: var(--titre);
   text-decoration: underline;
   text-align: center;
   background: var(--surface);
   padding: 0.5rem;
-    border-radius: 4px;
-    font-weight: bold;
+  border-radius: 4px;
+  font-weight: bold;
 }
+
+/* Effet de survol sur le lien d'article */
 article a:hover {
   color: var(--effet);
   text-decoration: none;
@@ -151,12 +260,16 @@ article a:hover {
   border: 1px solid var(--border);
 }
 
+
+/* ============================================================
+   ENCADRÉ LATÉRAL (aside)
+   Bordures bicolores : vert à gauche, bleu à droite
+   ============================================================ */
 aside {
   background: var(--surface);
-  border-left: 8px solid var(--element);
-  border-right:4px solid var(--bouton);
+  border-left: 8px solid var(--element);    /* Accent vert */
+  border-right: 4px solid var(--bouton);   /* Accent bleu */
   padding: 1.25rem;
-  
   border-radius: 0 16px 16px 0;
   font-size: 0.95rem;
   color: var(--texte);
@@ -166,86 +279,108 @@ aside {
   justify-content: right;
 }
 
+
+/* ============================================================
+   CITATION (blockquote)
+   Inversé par rapport à aside : bleu à gauche, vert à droite
+   ============================================================ */
 blockquote {
-  border-left: 8px solid var(--bouton);
-  border-right: 4px solid var(--element);
-  
+  border-left: 8px solid var(--bouton);    /* Accent bleu */
+  border-right: 4px solid var(--element);  /* Accent vert */
   padding: 0.5rem 0 0.5rem 1.25rem;
   font-style: italic;
   color: var(--texte);
   background: var(--surface);
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 16px 16px 0;
   width: 70%;
-   border-radius: 0 16px 16px 0;
-   margin-bottom: 5rem;
+  margin-bottom: 5rem;
   margin-top: 4rem;
 }
 
+
+/* ============================================================
+   SECTION COMPÉTENCES
+   Liste stylisée sur fond surface
+   ============================================================ */
+
+/* Conteneur de la liste des compétences */
 #competences ul {
   background: var(--surface);
   width: 70%;
   padding: 1.5rem;
-    border-radius: 8px;
-    color: var(--texte);
-    list-style:inside;
+  border-radius: 8px;
+  color: var(--texte);
+  list-style: inside;    /* Puces à l'intérieur du conteneur */
 }
 
-#competences  li {
+/* Chaque item de compétence */
+#competences li {
   margin-bottom: 0.5rem;
   color: var(--texte);
-  
 }
 
-#info p{
-    text-align:start;
+
+/* ============================================================
+   SECTION INFOS — Alignement du texte à gauche
+   ============================================================ */
+#info p {
+  text-align: start;
 }
 
-form{
+
+/* ============================================================
+   FORMULAIRE DE CONTACT
+   ============================================================ */
+
+/* Conteneur principal du formulaire */
+form {
   background: var(--surface);
   width: 70%;
   border-radius: 8px;
   padding: 2rem;
 }
 
-fieldset{
+/* Groupe de champs avec bordure */
+fieldset {
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 2rem;
   margin-bottom: 1rem;
-  background: var(--bg);
- 
+  background: var(--bg);   /* Dégradé de fond pour distinguer les sections */
 }
 
-legend{
+/* Titre du groupe de champs */
+legend {
   color: var(--bouton);
   font-weight: bold;
-  padding:0.5rem 1rem;
- margin-bottom: 1rem;
- margin-right: 1rem;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
   background: var(--surface);
   border-radius: 8px;
   border: 1px solid var(--border);
-
 }
 
-label{
+/* Étiquettes des champs */
+label {
   color: var(--titre);
   display: block;
   margin: 1rem;
 }
 
-input, textarea{
+/* Champs texte et zones de texte */
+input, textarea {
   width: 100%;
   padding: 0.7rem;
   border-radius: 4px;
   border: 1px solid var(--border);
   background: var(--surface);
-  color: var(--texte);
-  margin-left: 1rem;
   color: var(--titre);
+  margin-left: 1rem;
 }
 
-select{
+/* Liste déroulante */
+select {
   width: 100%;
   padding: 0.7rem;
   border-radius: 4px;
@@ -254,7 +389,9 @@ select{
   color: var(--texte);
   margin-left: 1rem;
 }
-button{
+
+/* Bouton d'envoi */
+button {
   background: var(--bouton);
   color: var(--titre);
   padding: 0.7rem 1.5rem;
@@ -263,12 +400,13 @@ button{
   cursor: pointer;
   margin-top: 1rem;
   display: block;
-
 }
 
+/* Style des champs texte/email/tel et textarea en focus (actif) */
 input[type="text"]:focus,
 input[type="email"]:focus,
-input[type="tel"]:focus,textarea:focus{
+input[type="tel"]:focus,
+textarea:focus {
   background: var(--bg);
   color: var(--titre);
   padding: 0.7rem 1.5rem;
@@ -277,10 +415,16 @@ input[type="tel"]:focus,textarea:focus{
   cursor: pointer;
   margin-top: 1rem;
   display: block;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
-button:hover{
+/* Agrandissement de la police du select en focus */
+select:focus {
+  font-size: 1.2rem;
+}
+
+/* Effet de survol sur le bouton */
+button:hover {
   background: var(--bgmain);
   color: var(--titre);
   padding: 0.7rem 1.5rem;
@@ -291,6 +435,10 @@ button:hover{
   display: block;
 }
 
+
+/* ============================================================
+   PIED DE PAGE (footer)
+   ============================================================ */
 footer {
   background: var(--surface);
   padding: 1rem;
